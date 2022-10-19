@@ -1,0 +1,58 @@
+Srednie czasy algorytmu Djikstry dla grafu opartego na Macierzy
+Gestosc grafu: 25%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 50%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 75%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 100%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Srednie czasy algorytmu Djikstry dla grafu opartego na Liscie Sasiedztwa
+Gestosc grafu: 25%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 50%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 75%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000
+Gestosc grafu: 100%
+Ilosc wierzcholkow  Sr. czas
+10	                0.000000
+20	                0.000000
+50	                0.000000
+100	                0.000000
+200	                0.000000

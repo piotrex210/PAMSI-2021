@@ -1,0 +1,203 @@
+  void printDjikstra(ListVertex* tab, int vert){
+    Vertex* x = tab->getVertex(vert);
+    ListVertex* path = new ListVertex;
+    cout << vert << "\t";
+    if(!x->isVisited()) cout << "nieodwiedzony";
+    else if(x->getPrevD() == nullptr)  cout << "brak";
+    else {
+      cout << x->getDistance() << "\t";
+      for(int i = 0; x->getPrevD() != nullptr; i++){
+        //cout << "push" << endl;
+        path->push(x);
+        path->getLast()->setElement(x->getElement());
+        x = x->getPrevD();
+      }
+      /*
+      while(path->getLast() != nullptr){
+        cout << path->getLast()->getElement() << "->";
+        path->delLast();
+      }
+      */
+
+      OLD
+    void printDjikstra(ListVertex* tab, int vert){
+    Vertex* x = tab->getVertex(vert);
+    cout << vert << "\t";
+    if(!x->isVisited()) cout << "nieodwiedzony";
+    else if(x->getPrevD() == nullptr)  cout << "brak";
+    else {
+      cout << x->getDistance() << "\t";
+      for(int i = 0; x->getPrevD() != nullptr; i++){
+        cout << "<-" << x->getPrevD()->getElement();
+        x = x->getPrevD();
+      }
+    }
+    cout << endl;
+   }
+
+   /*
+   // ta funkcja będzie zamieniona na kolejkę opartą na kopcu
+   int findMinimum(ListVertex* tab){
+     int min = -1;
+     int mindistance = INF;
+     for(int i = 0; i < v; i++){
+       if(!tab->getVertex(i)->isVisited() && tab->getVertex(i)->getDistance() < mindistance){
+         min = i;
+         mindistance = tab->getVertex(i)->getDistance();
+       }
+     }
+     return min;
+   }
+   */
+
+     ListVertex* doDjikstra(int start){
+    ListVertex* tab = V;
+    for(int i = 0; i < v; i++){
+      if(i == start) tab->getVertex(i)->setDistance(0);
+      else tab->getVertex(i)->setDistance(INF);
+      tab->getVertex(i)->setVisit(false);
+      tab->getVertex(i)->setPrevD(nullptr); 
+    }
+    int u = findMinimum(tab);
+    
+    while(u != -1){
+      tab->getVertex(u)->setVisit(true);
+      for(int i = 0; i < v; i++){
+        if(M[u][i] != nullptr && tab->getVertex(u)->getDistance() + M[u][i]->getWeight() < tab->getVertex(i)->getDistance()){
+          tab->getVertex(i)->setDistance(tab->getVertex(u)->getDistance() + M[u][i]->getWeight());
+          tab->getVertex(i)->setPrevD(tab->getVertex(u));
+        }
+      }
+      u = findMinimum(tab);
+    }
+    return tab;
+   }
+
+      // ta funkcja będzie zamieniona na kolejkę opartą na kopcu
+   int findMinimumLS(ListEdge* tab){
+     int min = -1;
+     int mindistance = INF;
+     for(int i = 0; i < v; i++){
+       if(!tab->getEdge(i)->getEnd()->isVisited() && tab->getEdge(i)->getEnd()->getDistance() < mindistance){
+         min = i;
+         mindistance = tab->getEdge(i)->getEnd()->getDistance();
+       }
+     }
+     return min;
+   }
+
+       // algorytm Djikstry przy użyciu listy sąsiedztwa
+    ListVertex* doDjikstraLS(int start){
+      Heap heap;
+      ListVertex* tab = V;
+      Vertex* temp;
+      for(int i = 0; i < v; i++){
+        if(i == start) tab->getVertex(i)->setDistance(0);
+        else tab->getVertex(i)->setDistance(INF);
+        tab->getVertex(i)->setVisit(false);
+        tab->getVertex(i)->setPrevD(nullptr); 
+      }
+
+      int lengthS = LS[start]->length();
+      for(int i = 0; i < lengthS; i++){
+        heap.push(LS[start]->getEdge(i)->getEdge()->getEnd());
+      }
+      int u ;
+      temp = heap.pop();s
+      if(temp == nullptr) u = -1;
+      else u = temp.getEnd()->getElement();
+      
+      int lengthU;
+
+      while(u != -1){
+        cout << "DJ ";
+        lengthU = LS[u]->length(); // długość listy sąsiedztwa wierzchołka u
+        V->getVertex(u)->setVisit(true);
+        for(int i = 0; i < lengthU; i++){ // przez całą listę sąsiedztwa wierzchołka End
+          if(tab->getVertex(u)->getDistance() + LS[u]->getEdge(i)->getWeight() < tab->getVertex(i)->getDistance()){
+            tab->getVertex(i)->setDistance(tab->getVertex(u)->getDistance() + LS[u]->getEdge(i)->getWeight());
+            tab->getVertex(i)->setPrevD(tab->getVertex(u)); 
+          }
+        }
+        for(int i = 0; i < v; i++){
+          if(M[u][i] != nullptr && tab->getVertex(u)->getDistance() + M[u][i]->getWeight() < tab->getVertex(i)->getDistance()){
+            tab->getVertex(i)->setDistance(tab->getVertex(u)->getDistance() + M[u][i]->getWeight());
+            tab->getVertex(i)->setPrevD(tab->getVertex(u));
+          }
+        }
+        temp = heap->pop();
+        if(temp == nullptr) u = -1;
+        else u = temp->getEnd()->getElement();
+      }
+      return tab;
+   }
+       // algorytm Djikstry przy użyciu listy sąsiedztwa
+    ListVertex* doDjikstraLS(int start){
+      Heap heap;
+      ListVertex* tab = V;
+      Vertex* temp;
+      for(int i = 0; i < v; i++){
+        if(i == start) tab->getVertex(i)->setDistance(0);
+        else tab->getVertex(i)->setDistance(INF);
+        tab->getVertex(i)->setVisit(false);
+        tab->getVertex(i)->setPrevD(nullptr); 
+      }
+
+      int lengthS = LS[start]->length();
+      for(int i = 0; i < lengthS; i++){
+        heap.push(LS[start]->getEdge(i)->getEdge()->getEnd());
+      }
+      int u ;
+      temp = heap.pop();
+      if(temp == nullptr) u = -1;
+      else u = temp.getEnd()->getElement();
+      
+      int lengthU;
+
+      while(u != -1){
+        cout << "DJ ";
+        lengthU = LS[u]->length(); // długość listy sąsiedztwa wierzchołka u
+        V->getVertex(u)->setVisit(true);
+        for(int i = 0; i < lengthU; i++){ // przez całą listę sąsiedztwa wierzchołka End
+          if(tab->getVertex(u)->getDistance() + LS[u]->getEdge(i)->getWeight() < tab->getVertex(i)->getDistance()){
+            tab->getVertex(i)->setDistance(tab->getVertex(u)->getDistance() + LS[u]->getEdge(i)->getWeight());
+            tab->getVertex(i)->setPrevD(tab->getVertex(u)); 
+          }
+        }
+        for(int i = 0; i < v; i++){
+          if(M[u][i] != nullptr && tab->getVertex(u)->getDistance() + M[u][i]->getWeight() < tab->getVertex(i)->getDistance()){
+            tab->getVertex(i)->setDistance(tab->getVertex(u)->getDistance() + M[u][i]->getWeight());
+            tab->getVertex(i)->setPrevD(tab->getVertex(u));
+          }
+        }
+        temp = heap->pop();
+        if(temp == nullptr) u = -1;
+        else u = temp->getEnd()->getElement();
+      }
+      return tab;
+   }
+
+
+Wezel   Dystans Sciezka
+0       brak
+1       35      0->9->1
+2       41      0->3->2
+3       21      0->3
+4       38      0->11->4
+5       20      0->5
+6       39      0->7->6
+7       24      0->7
+8       33      0->19->8
+9       24      0->9
+10      30      0->10
+11      11      0->11
+12      25      0->11->12
+13      19      0->13
+14      33      0->11->16->14
+15      38      0->3->15
+16      22      0->11->16
+17      36      0->13->17
+18      22      0->18
+19      20      0->19
+
+SOURCE:
